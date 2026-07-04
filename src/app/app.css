@@ -1,0 +1,39 @@
+mat-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 6rem;
+  padding: 0 1.5rem;
+  background: var(--mat-sys-surface-container);
+}
+
+.logo {
+  font-size: 2rem;
+  color: var(--mat-sys-on-surface);
+  font-weight: 500;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.buttonSearch {
+  font-size: 1.35rem;
+  background: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+
+}
+
+.menu-trigger {
+  color: var(--mat-sys-primary);
+  width: 48px !important;
+  height: 48px !important;
+}
+
+.menu-trigger .mat-icon {
+  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+}

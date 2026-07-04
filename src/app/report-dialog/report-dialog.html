@@ -1,0 +1,52 @@
+<h2 mat-dialog-title class="report-title">Report an issue</h2>
+
+<mat-dialog-content>
+
+
+    @if (state() === 'success') {
+    <div class="feedback-state">
+        <mat-icon class="feedback-icon-success">check_circle</mat-icon>
+        <p>Thank you! Your report has been submitted.</p>
+    </div>
+    } @else if (state() === 'error') {
+    <div class="feedback-state">
+        <mat-icon class="feedback-icon-error">error_outline</mat-icon>
+        <p>Something went wrong. Please try again later.</p>
+    </div>
+    } @else if (state() === 'loading') {
+    <mat-progress-bar mode="indeterminate" />
+    } @else {
+    <div class="form-container">
+        <div align="center" class="compact-fields">
+            <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                <mat-label>Issue type</mat-label>
+                <mat-select [value]="selectedType()" (selectionChange)="selectedType.set($event.value)">
+                    @for (type of reportTypes; track type.value) {
+                    <mat-option [value]="type.value">{{ type.label }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" subscriptSizing="dynamic" class="description-field">
+            <mat-label>Description</mat-label>
+            <textarea matInput rows="5" placeholder="Please describe the issue in detail (min. 10 characters)"
+                maxlength="500" [value]="description()" (input)="description.set($any($event.target).value)">
+        </textarea>
+            <mat-hint align="start">Min. 10 characters</mat-hint>
+            <mat-hint align="end">{{ description().trim().length }} / {{ 500 }}</mat-hint>
+        </mat-form-field>
+    </div>
+    }
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onClose()">
+        {{ state() === 'success' ? 'Close' : 'Cancel' }}
+    </button>
+    @if (state() !== 'success') {
+    <button mat-flat-button [disabled]="!isValid() || state() === 'loading'" (click)="onSubmit()">
+        Submit
+    </button>
+    }
+</mat-dialog-actions>

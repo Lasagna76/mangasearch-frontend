@@ -1,0 +1,10 @@
+<app-filter [loading] ="state()=='loading'"  (searchRequested)="onSearch($event)">
+</app-filter>
+
+@if (state() === 'loading') {
+  <mat-progress-bar class="progress" mode="indeterminate"/>
+}
+
+<app-response [state]="state()" [mangas]="mangas()" [totalElements]="totalElements()" [page]="currentPage()" [isLastPage]="isLastPage()"
+    (pageChange)="onPageChange($event)">
+</app-response>

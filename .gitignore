@@ -1,0 +1,19 @@
+# Dipendenze
+node_modules/
+
+# Build output
+dist/
+
+# Environment con credenziali
+src/environments/environment.prod.ts
+
+# Cache Angular
+.angular/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

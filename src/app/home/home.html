@@ -1,0 +1,44 @@
+<div class="home-content">
+  @switch (state()) {
+  @case ('loading') {
+  <mat-progress-bar class="progress" mode="indeterminate" />
+  }
+
+  @case ('success'){
+  <section class="latest-section">
+
+    <h2 class="section-title">
+      Recently completed on Mangadex
+    </h2>
+
+    <div class="manga-grid">
+      @for (manga of mangas(); track manga.id) {
+      <app-manga-card [manga]="manga" />
+      }
+    </div>
+
+  </section>
+  }
+
+  @case ('error'){
+  <div class="state-container">
+    <mat-icon class="error-icon">error_outline</mat-icon>
+    <p class="state-message"> "Service Unavailable.Please try again later..</p>
+  </div>
+  }
+  }
+</div>
+<footer class="attribution">
+  <mat-divider />
+  <p class="attribution-text">
+    Manga data provided by
+    <a href="https://mangadex.org" target="_blank" rel="noopener noreferrer" class="attribution-link">
+      MangaDex
+    </a>
+    · Updated every 24 hours
+  </p>
+  <!-- <p class="attribution-text">
+    <mat-icon class="mail-icon">mail</mat-icon>
+    <a href="mailto:tua@email.com" class="attribution-link">tua@email.com</a>
+  </p> -->
+</footer>

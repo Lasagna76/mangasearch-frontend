@@ -1,0 +1,53 @@
+<mat-card class="manga-card" appearance="outlined"
+          (click)="apriMangaDex()"
+          role="link"
+          [attr.aria-label]="'Apri ' + manga().title + ' su MangaDex'">
+
+  <img mat-card-image class="cover-img"
+    [src]="manga().copertina || 'https://placehold.co/400x600/eeeeee/999999?text=NO IMAGE AVAILABLE'"
+    [alt]="manga().title" (error)="handleImageError($event)" referrerpolicy="no-referrer">
+
+  <div class="card-body">
+
+    <mat-card-header>
+
+      <mat-card-title class="title" [matTooltip]="manga().title">
+        {{ manga().title }}
+      </mat-card-title>
+
+      <mat-card-subtitle>
+        {{ manga().annoPubblicazione ?? 'Unknown year' }}
+        @if (manga().originalLanguage) { · {{ manga().originalLanguage | titlecase }} }
+      </mat-card-subtitle>
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <p class="stats-row">
+        <mat-icon class="star-icon">star</mat-icon>
+        <span>{{ manga().bayesianRating }}</span>
+
+        <mat-icon class="follower-icon">people</mat-icon>
+        <span>{{ manga().followersCount }}</span>
+      </p>
+
+      <mat-chip-set class="genres">
+
+        @for (genere of manga().generi.slice(0, 4); track genere.genere) {
+        <mat-chip>
+          {{ genere.genere }}
+        </mat-chip>
+        }
+
+      </mat-chip-set>
+
+      <p class="description">
+        {{ manga().description || 'No description available' }}
+      </p>
+
+    </mat-card-content>
+
+  </div>
+
+</mat-card>

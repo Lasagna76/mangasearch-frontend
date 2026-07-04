@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+ngx-slider {
+  .ngx-slider-selection {
+    background: var(--mat-sys-primary) !important;
+  }
+
+  .ngx-slider-pointer {
+    background: var(--mat-sys-primary) !important;
+
+    &::after {
+      background: var(--mat-sys-on-primary) !important;
+    }
+
+    &.ngx-slider-active {
+      background: var(--mat-sys-primary) !important;
+    }
+  }
+
+  .ngx-slider-bar {
+    background: var(--mat-sys-outline-variant) !important;
+  }
+
+  .ngx-slider-bubble {
+    color: var(--mat-sys-on-surface) !important;
+  }
+}
+
+
+mat-paginator {
+  @include mat.paginator-overrides((container-background-color: transparent,
+      container-text-color: var(--mat-sys-on-surface),
+      container-text-size: 19px,
+      select-trigger-text-size: 15px));
+
+  @include mat.icon-button-overrides((state-layer-size: 72px));
+
+  .mat-mdc-paginator-container {
+    justify-content: center !important;
+    min-height: 64px;
+  }
+
+  .mat-mdc-select-value-text {
+    font-size: 15px !important;
+  }
+}
+
+// * {
+//   outline: 1px solid red;
+//   background: rgba(255, 0, 0, 0.05);
+// }
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+

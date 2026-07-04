@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>Select genres</h2>
+
+<mat-dialog-content>
+  @for (categoria of categorieKeys; track categoria) {
+    <div class="categoria-section">
+      <p class="categoria-label">{{ categoria }}</p>
+      <div class="chips-container">
+        @for (genere of generiPerCategoria.get(categoria)!; track genere.id) {
+          <span
+            class="genre-chip"
+            [class.genre-chip--include]="getState(genere.id) === 'include'"
+            [class.genre-chip--exclude]="getState(genere.id) === 'exclude'"
+            role="button"
+            [attr.aria-label]="genere.genere + ': ' + getState(genere.id)"
+            (click)="toggleState(genere.id)"
+          >
+            {{ genere.genere }}
+          </span>
+        }
+      </div>
+    </div>
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <div class="dialog-footer">
+    <div class="selection-stats">
+      @if (includeCount() > 0) {
+        <span class="stat stat--include">✓ {{ includeCount() }} included</span>
+      }
+      @if (excludeCount() > 0) {
+        <span class="stat stat--exclude">✕ {{ excludeCount() }} included</span>
+      }
+    </div>
+    <div class="actions">
+      <button mat-button (click)="onReset()">Reset</button>
+      <button mat-button (click)="onCancel()">Cancel</button>
+      <button mat-flat-button color="primary" (click)="onApply()">Apply</button>
+    </div>
+  </div>
+</mat-dialog-actions>

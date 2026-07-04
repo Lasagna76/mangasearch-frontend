@@ -1,0 +1,40 @@
+<section class="results-section">
+
+  @switch (state()) {
+
+  @case ('error') {
+  <div class="state-container">
+    <mat-icon class="error-icon">error_outline</mat-icon>
+    <p class="state-message"> "Service Unavailable.Please try again later..</p>
+  </div>
+  }
+  @case ('empty') {
+  <div class="state-container">
+    <mat-icon class="state-icon">search_off</mat-icon>
+    <p class="state-title">No manga found</p>
+    <p class="state-message">Try adjusting your filters or selecting different genres.</p>
+  </div>
+  }
+  @case ('success') {
+  <div class="manga-grid">
+    @for (manga of mangas(); track manga.id) {
+    <app-manga-card [manga]="manga" />
+    }
+  </div>
+  <mat-paginator [length]="totalElements()" [pageIndex]="page()" [pageSize]="24" [hidePageSize]="true"
+    (page)="onPage($event)" [disabled]="isLastPage()" class="paginator">
+  </mat-paginator>
+  }
+  @case ('idle') {
+  <div class="idle-state">
+    <mat-icon class="idle-icon">manage_search</mat-icon>
+    <p class="idle-title">Find your next manga</p>
+    <p class="idle-subtitle">Use the filters above to search by genre, rating, year and more.</p>
+  </div>
+  }
+
+  }
+
+
+
+</section>

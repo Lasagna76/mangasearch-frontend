@@ -1,0 +1,86 @@
+<div class="filter">
+
+  <mat-expansion-panel class="panel">
+
+    <mat-expansion-panel-header>
+      <mat-panel-title class="panel-title"> MangaSearch Filter </mat-panel-title>
+      <mat-panel-description> Advanced search for completed manga </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div class="filter-params">
+
+      <div class="genre-filter-row">
+
+        <button matButton="tonal" class="dialog-button" type="button" (click)="openGenreDialog()">
+          Select genres
+        </button>
+
+
+        <div class="genre-badges">
+          @if (genreSelection().include.length > 0) {
+          <span class="badge badge--include">✓ {{ genreSelection().include.length }} included</span>
+          }
+          @if (genreSelection().exclude.length > 0) {
+          <span class="badge badge--exclude">✕ {{ genreSelection().exclude.length }} excluded</span>
+          }
+        </div>
+      </div>
+
+      <div class="slider-filter-row">
+        <p class="slider-label">
+          Rating: {{ ratingMin() }} – {{ ratingMax() }}
+        </p>
+        <ngx-slider [value]="ratingMin()" [highValue]="ratingMax()" [options]="sliderOptions"
+          (valueChange)="ratingMin.set($event)" (highValueChange)="ratingMax.set($event)">
+        </ngx-slider>
+      </div>
+
+      <div class="slider-filter-row">
+        <p class="slider-label">
+          Year: {{ yearMin() }} – {{ yearMax() }}
+        </p>
+        <ngx-slider [value]="yearMin()" [highValue]="yearMax()" [options]="yearOptions"
+          (valueChange)="yearMin.set($event)" (highValueChange)="yearMax.set($event)">
+        </ngx-slider>
+      </div>
+
+      <div class="compact-fields">
+        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+          <mat-label>Original language</mat-label>
+          <mat-select [value]="selectedLanguage()" (selectionChange)="selectedLanguage.set($event.value)">
+            <mat-option [value]="null">Any</mat-option>
+            @for (lang of languages; track lang.code) {
+            <mat-option [value]="lang.code">
+              {{ lang.label }} <span class="lang-code">({{ lang.code }})</span>
+            </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="compact-fields">
+        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+          <mat-label>Order by</mat-label>
+          <mat-select [value]="sortField()" (selectionChange)="sortField.set($event.value)">
+            @for (field of sortFields; track field.value) {
+            <mat-option [value]="field.value">{{ field.label }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="compact-fields">
+        <mat-slide-toggle [checked]="sortDirection() === 'ASC'"
+          (change)="sortDirection.set($event.checked ? 'ASC' : 'DESC')">
+          {{ sortDirection() === 'ASC' ? 'Crescente' : 'Decrescente' }}
+        </mat-slide-toggle>
+      </div>
+
+    </div>
+
+  </mat-expansion-panel>
+
+
+  <button class="search-button" matButton="filled" [disabled]="loading()" (click)="search()">Search</button>
+
+</div>

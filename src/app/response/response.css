@@ -1,0 +1,81 @@
+.manga-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(150px, 40vw, 220px), 1fr));
+  gap: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 1200px) {
+  .manga-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.state-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 16px;
+  gap: 12px;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.state-icon {
+  font-size: 60px;
+  width: 48px;
+  height: 48px;
+
+}
+
+.error-icon {
+  font-size: 42px;
+  width: 48px;
+  height: 48px;
+  color: red;
+
+}
+
+.state-title {
+  font-size: 24px;
+  font-weight: 400;
+
+}
+
+.state-message {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 300;
+}
+
+.idle-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 80px 16px;
+  text-align: center;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.idle-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  opacity: 0.4;
+}
+
+.idle-title {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+  color: var(--mat-sys-on-surface);
+}
+
+.idle-subtitle {
+  font-size: 14px;
+  margin: 0;
+  max-width: 360px;
+}
