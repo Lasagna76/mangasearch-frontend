@@ -1,59 +1,49 @@
-# Mangadex
+MangaSearch — Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
+Interfaccia utente per la ricerca e scoperta di manga completati,
+sviluppata come progetto portfolio.
 
-## Development server
+Tecnlogie utilizzate
 
-To start a local development server, run:
+ Angular 21 : Framework frontend 
+ Angular Material M3 : UI Component library 
+ RxJS : Gestione reactive degli stream 
+ TypeScript : Linguaggio principale 
+ SCSS : Styling con Angular Material mixins 
 
-```bash
-ng serve
+Funzionalità principali
+
+ Home page con gli ultimi manga aggiornati
+ Ricerca avanzata con:
+  - Selezione generi inclusi/esclusi (chip dialog tri-state)
+  - Filtri per rating, anno di pubblicazione, lingua originale
+  - Ordinamento dinamico (ASC/DESC)
+  - Paginazione
+  - Card manga con cover, rating, generi e link a MangaDex
+  - Design responsive con CSS Grid auto-fill e container queries
+  - Report dialog per segnalazione errori
+
+Deployment
+
+- Frontend: Netlify (free tier)
+- Backend: [mangasearch-backend](https://github.com/Lasagna76/mangasearch-backend)
+
+Demo live
+
+ [mangasearch.netlify.app](https://mangasearch.netlify.app)
+
+ Cold start: il backend gira su Google Cloud Run free tier.
+ La prima richiesta dopo inattività può richiedere 10-20 secondi.
+
+Struttura del progetto
+
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+src/
+├── app/
+│   ├── components/      Componenti standalone Angular
+│   ├── services/        HTTP services
+│   ├── models/          Interfacce TypeScript
+├── environments/
+│   └── environment.ts   Configurazione locale
+└── assets/
 ```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
